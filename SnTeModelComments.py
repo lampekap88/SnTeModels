@@ -214,6 +214,9 @@ def plot_wavefunction(syst, params, symmetry, layer=0, Energy = 0, a=1, identify
     
     #Shows the wave function of the bulk at a given energy. It also shows the all spins (but only for the current basis used)
     wave=kwant.wave_function(syst, energy=Energy, params=params)
+    print('wave')
+    print(wave)
+
     Sites=syst.sites
     
     tau_x = np.array([[0,1], [1, 0]])
@@ -223,10 +226,16 @@ def plot_wavefunction(syst, params, symmetry, layer=0, Energy = 0, a=1, identify
     def cut(site1):
         return symmetry[0]*site1.pos[0]+symmetry[1]*site1.pos[1]+symmetry[2]*site1.pos[2]==layer
     prob_density = kwant.operator.Density(syst,np.eye(6),where=cut)
+    print('prob_density')
+    print(prob_density)
     spin_densityx = kwant.operator.Density(syst,np.kron(tau_x,np.eye(3)), where=cut)
     spin_densityy = kwant.operator.Density(syst,np.kron(tau_y,np.eye(3)), where=cut)
     spin_densityz = kwant.operator.Density(syst,np.kron(tau_z,np.eye(3)), where=cut)
     wf = sum(prob_density(psi) for psi in wave(0))
+    print('wave(0)')
+    print(wave(0))
+    print('wf')
+    print(wf)
     rho_sx = sum(spin_densityx(psi) for psi in wave(0))
     rho_sy = sum(spin_densityy(psi) for psi in wave(0))
     rho_sz = sum(spin_densityz(psi) for psi in wave(0))
@@ -467,7 +476,7 @@ def main(s1 = 12,s2= 12,a=1, Energy=-0.0, symmetry = (2,0,0), surface1 = (0,0,1)
 
 if __name__=='__main__':
     start = time.time()
-    main(s1 = 8, s2 = 8, delta = 0, Energy = -0.07, comp = 1)
+    main(s1 = 7, s2 = 7, delta = 0, Energy = -0.087, comp = 1)
     end = time.time()
     print('Time')
     print(end-start)

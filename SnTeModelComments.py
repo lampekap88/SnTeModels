@@ -431,7 +431,9 @@ def main(s1 = 12,s2= 12,a=1, Energy=-0.0, symmetry = (2,0,0), surface1 = (0,0,1)
     
     #Make folder
     path = os.path.dirname(__file__)
+    print(path)
     totalpath = path+newpath
+    print(totalpath)
     if not os.path.exists(totalpath):
         os.makedirs(totalpath)
     if not os.path.exists(totalpath+'/Geometry'):

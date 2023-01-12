@@ -432,7 +432,6 @@ def main(s1 = 12,s2= 12,a=1, Energy=-0.0, symmetry = (2,0,0), surface1 = (0,0,1)
     #Make folder
     path = '/home/ubuntu/SnTeModels'
     totalpath = path+newpath
-    print(totalpath)
     if not os.path.exists(totalpath):
         os.makedirs(totalpath)
     if not os.path.exists(totalpath+'/Geometry'):
@@ -481,5 +480,7 @@ if __name__=='__main__':
     end = time.time()
     print('Time')
     print(end-start)
+
+    print('Script Finished')
 
     

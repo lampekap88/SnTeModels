@@ -502,7 +502,7 @@ def main(s1 = 5,s2= 5,a=1, Energy=-0.0, symmetry = (2,0,0), surface1 = (0,0,1), 
         index=0
         print(index)
         if reuse == False or index == 0:
-            plot_spectrum(SnTe_lead, params, np.linspace(-math.pi/a,0, 101), Energy=En, identifyer = identifyer, path = totalpath+'/BandStructure')
+            plot_spectrum(SnTe_lead, params, np.linspace(-math.pi/a,-2, 101), Energy=En, identifyer = identifyer, path = totalpath+'/BandStructure')
         index = index+1
         
         plot_wavefunction(SnTe, params, symmetry, Energy = En, identifyer = identifyer, path = totalpath+'/Density', Multilayer = True, Separate = True)
@@ -520,9 +520,8 @@ def main(s1 = 5,s2= 5,a=1, Energy=-0.0, symmetry = (2,0,0), surface1 = (0,0,1), 
 if __name__=='__main__':
     Energy =  [-0.055, -0.06, -0.07, -0.075, -0.08, -0.095, -0.1, -0.11]
     start = time.time()
-    main(s1 = 13, s2 = 41, delta = 0, Energy = Energy, p=0, strainfactor = 0, comp = 1, reuse = True)
+    main(s1 = 13, s2 = 35, delta = 0, Energy = Energy, p=0, strainfactor = 0, comp = 1, reuse = False)
     end = time.time()
     print(time)
 
     
-print('hello')

@@ -192,7 +192,8 @@ def plot_spectrum(lead, params, momenta, Energy, identifyer='', path = ''):
     plt.xlabel("Momentum ($a^{-1}$)")
     plt.ylabel("Energy (Ev)")
     plt.ylim(-0.2,0)
-    plt.axhline(y=Energy, color='black', ls='dashed', label=f'$Energy$={Energy}')
+    for En in Energy:
+    	plt.axhline(y=En, color='black', ls='dashed', label=f'$Energy$={Energy}')
     
     plt.title('Bandspectrum')
     plt.savefig(path+'/SnTe'+identifyer+'bandstructure.png')
@@ -496,15 +497,14 @@ def main(s1 = 5,s2= 5,a=1, Energy=-0.0, symmetry = (2,0,0), surface1 = (0,0,1), 
     
     SnTe, SnTe_lead = build_system(SnTe_template, symmetry, surface_1, surface_2, plotter = False, identifyer = identifyer, path = totalpath+'/Geometry')
     
+    identifyer = '%02d' %a + '%02d' %(s1) + '%02d' %(s2) + '%02d' %(En*1000) + '%01d' %(symmetry[0])+ '%01d' %(symmetry[1])+ '%01d' %(symmetry[2])+ '%01d' %(surface1[0])+ '%01d' %(surface1[1])+ '%01d' %(surface1[2])+ '%01d' %(surface2[0])+ '%01d' %(surface2[1])+ '%01d' %(surface2[2]) + '%02d' %(delta*100)+ '%02d' %(p*100) + '%02d' %(strainfactor*100) + '%02d' %(comp*100)
+    
+    
+    plot_spectrum(SnTe_lead, params, np.linspace(-math.pi/a,-2, 101), Energy=Energy, identifyer = identifyer, path = totalpath+'/BandStructure')
+    
     for En in Energy:
-        identifyer = '%02d' %a + '%02d' %(s1) + '%02d' %(s2) + '%02d' %(En*1000) + '%01d' %(symmetry[0])+ '%01d' %(symmetry[1])+ '%01d' %(symmetry[2])+ '%01d' %(surface1[0])+ '%01d' %(surface1[1])+ '%01d' %(surface1[2])+ '%01d' %(surface2[0])+ '%01d' %(surface2[1])+ '%01d' %(surface2[2]) + '%02d' %(delta*100)+ '%02d' %(p*100) + '%02d' %(strainfactor*100) + '%02d' %(comp*100)
-        
-        index=0
-        print(index)
-        if reuse == False or index == 0:
-            plot_spectrum(SnTe_lead, params, np.linspace(-math.pi/a,-2, 101), Energy=En, identifyer = identifyer, path = totalpath+'/BandStructure')
-        index = index+1
-        
+	print('Energy')
+	print(En)
         plot_wavefunction(SnTe, params, symmetry, Energy = En, identifyer = identifyer, path = totalpath+'/Density', Multilayer = True, Separate = True)
         pen=-1
     
@@ -520,8 +520,9 @@ def main(s1 = 5,s2= 5,a=1, Energy=-0.0, symmetry = (2,0,0), surface1 = (0,0,1), 
 if __name__=='__main__':
     Energy =  [-0.055, -0.06, -0.07, -0.075, -0.08, -0.095, -0.1, -0.11]
     start = time.time()
-    main(s1 = 13, s2 = 35, delta = 0, Energy = Energy, p=0, strainfactor = 0, comp = 1, reuse = False)
+    main(s1 = 13, s2 = 41, delta = 0, Energy = Energy, p=0, strainfactor = 0, comp = 1, reuse = False)
     end = time.time()
     print(time)
+print('script over')
 
     

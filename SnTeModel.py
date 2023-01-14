@@ -503,11 +503,10 @@ def main(s1 = 5,s2= 5,a=1, Energy=-0.0, symmetry = (2,0,0), surface1 = (0,0,1), 
     plot_spectrum(SnTe_lead, params, np.linspace(-math.pi/a,-2, 101), Energy=Energy, identifyer = identifyer, path = totalpath+'/BandStructure')
     
     for En in Energy:
-	print('Energy')
-	print(En)
+        print('Energy')
+        print(En)
         plot_wavefunction(SnTe, params, symmetry, Energy = En, identifyer = identifyer, path = totalpath+'/Density', Multilayer = True, Separate = True)
-        pen=-1
-    
+        pen=-1    
         #plot_current(syst = SnTe, params=params, Energy = Energy, identifyer = identifyer, path = totalpath+'/Current', symmetry = symmetry)
         #pen = Calculate_pen_depth(wf, s1, s2, identifyer, path = totalpath+'/Pendepth')
     
